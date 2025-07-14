@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lỗi Hệ Thống</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f8d7da; color: #721c24; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        h1 { font-size: 24px; }
+        p { font-size: 18px; }
+        pre { white-space: pre-wrap; background: #f1f1f1; padding: 10px; border-radius: 5px; }
+        a { color: #721c24; font-weight: bold; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚨 Có lỗi xảy ra</h1>
+        <p><strong>Chi tiết lỗi:</strong></p>
+        <div id="errorMessage">Đang tải...</div>
+        <p><a href="javascript:history.back()">🔙 Quay lại</a></p>
+    </div>
+
+    <script>
+        // Lấy lỗi từ URL
+        const params = new URLSearchParams(window.location.search);
+        const error = params.get("message") || "Không có thông tin lỗi.";
+
+        // Hiển thị lỗi
+        document.getElementById("errorMessage").innerHTML = `<pre>${decodeURIComponent(error)}</pre>`;
+    </script>
+</body>
+</html>

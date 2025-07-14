@@ -1,0 +1,31 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "run": "php artisan serve",
+        "Create Storage image": "php artisan storage:link",
+        "makeController": "php artisan make:controller BaiDangNhanhController ",
+        "makeController Full Class": "php artisan make:controller Admin/AdminHomeController --resource",
+        "makeModel-Controller-Migration": "php artisan make:model Loainhadat -mcr",
+        "RunPHPCommand": " php artisan tinker ",
+        "CreatePass": "echo bcrypt('12345')",
+        "CreateMigration": "php artisan make:migration update_baidangnhanh ",
+        "makeMigration": "php artisan migrate",
+        "makeOnlyMigration": "php artisan migrate --path=database/migrations/2025_07_07_114757_create_personal_access_tokens_table.php",
+        "makeFormRequest": "php artisan make:request Menu/CreateFormRequest",
+        "list": "php artisan route:list",
+        "storage": "php artisan storage:link",
+        "Package do mat khau": "php artisan make:middleware ThrottleLogins",
+        "Install Toast": "npm install toastr --save"
+    },
+    "devDependencies": {
+        "@tailwindcss/vite": "^4.0.0",
+        "axios": "^1.7.4",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^1.2.0",
+        "tailwindcss": "^4.0.0",
+        "vite": "^6.0.11"
+    }
+}
