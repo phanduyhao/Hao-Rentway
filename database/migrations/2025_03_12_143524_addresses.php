@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('code')->unique();
-            $table->enum('country', ['Vietnam', 'Philippines', 'Thailand'])->default('Vietnam'); // Quốc gia
+            $table->enum('country', ['Vietnam', 'Philippines', 'Thailand'])->default('Vietnam')->after('id'); // Quốc gia
             $table->timestamps();
         });
         Schema::create('districts', function (Blueprint $table) {

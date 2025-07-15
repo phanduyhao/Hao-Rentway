@@ -6,8 +6,6 @@ use Illuminate\Support\Str;
 use App\Models\BaiDangNhanh;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Exception;
-use Illuminate\Support\Facades\DB;
 
 class BaiDangNhanhController extends Controller
 {
@@ -19,14 +17,7 @@ class BaiDangNhanhController extends Controller
 
     public function list(){
         $baidangnhanhs = BaiDangNhanh::orderByDesc('id')->paginate(10);
-        
-        // Handle the missing isRead column
-        try {
-            $count_unread = BaiDangNhanh::where('isRead', null)->count();
-        } catch (Exception $e) {
-            // If the column doesn't exist, set count_unread to 0
-            $count_unread = 0;
-        }
+        $count_unread = BaiDangNhanh::where('isRead', null)->count();
 
         return view('dangtinnhanh.list',compact('baidangnhanhs','count_unread'),[
             'title' => __('post.title')
@@ -114,20 +105,14 @@ class BaiDangNhanhController extends Controller
 
     public function markAsRead(BaiDangNhanh $baidang)
     {
-        try {
-            $baidang->isRead = true; // Cập nhật isRead thành true
-            $baidang->save(); // Lưu vào cơ sở dữ liệu
-            
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Bài đăng đã được đánh dấu là đã đọc'
-            ]);
-        } catch (Exception $e) {
-            // If the column doesn't exist, just return success anyway
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Bài đăng đã được xử lý'
-            ]);
-        }
+        $baidang->isRead = true; // Cập nhật isRead thành true
+        $baidang->save(); // Lưu vào cơ sở dữ liệu
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Bài đăng đã được đánh dấu là đã đọc'
+        ]);
     }
+
+
 }
