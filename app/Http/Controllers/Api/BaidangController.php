@@ -14,6 +14,10 @@ use Exception;
 use Carbon\Carbon;
 use App\Models\Loainhadat;
 use App\Models\Baidanglienhe;
+use App\Models\Address;
+use App\Models\Ward;
+use App\Models\District;
+use App\Models\Province;
 
 class BaidangController extends Controller
 {
@@ -85,7 +89,11 @@ class BaidangController extends Controller
                 'tieude' => 'required|string|max:255',
                 'title_en' => 'nullable|string|max:255',
                 'loainhadat_id' => 'required|exists:loainhadats,id',
-                'address_id' => 'required|exists:addresses,id',
+                // Địa chỉ fields - chỉ yêu cầu ward_id và street
+                'ward_id' => 'required|exists:wards,id',
+                'street' => 'required|string|max:255',
+                'latitude' => 'nullable|numeric',
+                'longitude' => 'nullable|numeric',
                 'gia' => 'required|numeric',
                 'dientich' => 'required|numeric',
                 'mota' => 'required|string',
@@ -150,6 +158,22 @@ class BaidangController extends Controller
             }
             $mabaidang = $maLoaiBds . $maDoiTuong . $tenNguoiDang . $ngaydang . $postOrder;
 
+            // Lấy ward từ ID
+            $ward = Ward::find($request->ward_id);
+            if (!$ward) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Ward not found',
+                ], 404);
+            }
+
+            // Create address - chỉ cần ward_id và street
+            $address = new Address();
+            $address->street = $request->street;
+            $address->ward_id = $request->ward_id;
+            $address->latitude = $request->latitude;
+            $address->longitude = $request->longitude;
+            $address->save();
 
             // Create contact information
             $contact = new Baidanglienhe();
@@ -178,7 +202,7 @@ class BaidangController extends Controller
             $baidang->title = $request->tieude;
             $baidang->title_en = $request->title_en;
             $baidang->loainhadat_id = $request->loainhadat_id;
-            $baidang->address_id = $request->address_id;
+            $baidang->address_id = $address->id;
             $baidang->price = $request->gia;
             $baidang->dientich = $request->dientich;
             $baidang->slug = Str::slug($request->tieude) . '-' . time();
@@ -230,6 +254,9 @@ class BaidangController extends Controller
             ], 201);
         } catch (Exception $e) {
             // Rollback and return error
+            if (isset($address)) {
+                $address->delete();
+            }
             if (isset($contact)) {
                 $contact->delete();
             }
@@ -413,7 +440,11 @@ class BaidangController extends Controller
             $validator = Validator::make($request->all(), [
                 'tieude' => 'nullable|string|max:255',
                 'loainhadat_id' => 'nullable|exists:loainhadats,id',
-                'address_id' => 'nullable|exists:addresses,id',
+                // Địa chỉ fields - chỉ yêu cầu ward_id và street
+                'ward_id' => 'nullable|exists:wards,id',
+                'street' => 'nullable|string|max:255',
+                'latitude' => 'nullable|numeric',
+                'longitude' => 'nullable|numeric',
                 'gia' => 'nullable|numeric',
                 'dientich' => 'nullable|numeric',
                 'mota' => 'nullable|string',
@@ -441,7 +472,21 @@ class BaidangController extends Controller
             }
             
             if ($request->has('loainhadat_id')) $baidang->loainhadat_id = $request->loainhadat_id;
-            if ($request->has('address_id')) $baidang->address_id = $request->address_id;
+            
+            // Update address if any address field is provided
+            if ($request->has('ward_id') || $request->has('street') || 
+                $request->has('latitude') || $request->has('longitude')) {
+                
+                $address = Address::find($baidang->address_id);
+                if ($address) {
+                    if ($request->has('street')) $address->street = $request->street;
+                    if ($request->has('ward_id')) $address->ward_id = $request->ward_id;
+                    if ($request->has('latitude')) $address->latitude = $request->latitude;
+                    if ($request->has('longitude')) $address->longitude = $request->longitude;
+                    $address->save();
+                }
+            }
+            
             if ($request->has('gia')) $baidang->price = $request->gia;
             if ($request->has('dientich')) $baidang->dientich = $request->dientich;
             

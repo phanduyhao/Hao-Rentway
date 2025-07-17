@@ -203,7 +203,7 @@ class PostController extends Controller
             $address->latitude = $request->input('latitude');
             $address->longitude = $request->input('Longitude');
             $address->save();
-
+            // dd($address);
             // Lưu thông tin liên hệ
             $contact = new Baidanglienhe();
             $contact->agent_name = $request->name_contact;
@@ -365,6 +365,7 @@ class PostController extends Controller
         if ($baidang->user_id != null) {
             $user = User::find($baidang->user_id);
         }
+       
         $title = $baidang->title;
         return view('posts.detail', compact('baidang', 'favourite', 'user', 'settings', 'baidanghots', 'baidangnews'), [
             'title' => $title
