@@ -156,7 +156,7 @@ class BaidangController extends Controller
                     'message' => 'Mã loại bất động sản không hợp lệ.',
                 ], 400);
             }
-            $mabaidang = $maLoaiBds . $maDoiTuong . $tenNguoiDang . $ngaydang . $postOrder;
+            $mabaidang = $maLoaiBds . "SAI" . $ngaydang . $postOrder;
 
             // Lấy ward từ ID
             $ward = Ward::find($request->ward_id);
