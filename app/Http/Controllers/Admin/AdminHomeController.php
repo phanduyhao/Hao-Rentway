@@ -23,13 +23,13 @@ class AdminHomeController extends Controller
         };
     
         // Thống kê tổng số bài đăng của mỗi user (lọc theo khoảng ngày)
-        $thongkes = User::select('name', 'email', 'role')->where('role','!=','admin')
+        $thongkes = User::select('name', 'email', 'role')
             ->withCount(['baidangs' => $filterDate])
             ->orderByDesc('baidangs_count')
             ->get();
     
         // Thống kê bài đăng trong tháng (lọc theo khoảng ngày)
-        $thongkeotheothang = User::select('name', 'email', 'role')->where('role','!=','admin')
+        $thongkeotheothang = User::select('name', 'email', 'role')
             ->withCount(['baidangs' => function ($query) use ($filterDate) {
                 $query->whereMonth('created_at', now()->month)
                       ->whereYear('created_at', now()->year);
@@ -39,7 +39,7 @@ class AdminHomeController extends Controller
             ->get();
     
         // Thống kê bài đăng trong tuần (lọc theo khoảng ngày)
-        $thongkesoWeek = User::select('name', 'email', 'role')->where('role','!=','admin')
+        $thongkesoWeek = User::select('name', 'email', 'role')
             ->withCount(['baidangs' => function ($query) use ($filterDate) {
                 $startOfWeek = Carbon::now()->startOfWeek()->toDateString(); // Lấy ngày đầu tuần
                 $endOfWeek = Carbon::now()->endOfWeek()->toDateString(); // Lấy ngày cuối tuần
@@ -51,7 +51,7 @@ class AdminHomeController extends Controller
             ->get();
 
         // Thống kê bài đăng trong ngày (lọc theo khoảng ngày)
-        $thongketheongay = User::select('name', 'email', 'role')->where('role','!=','admin')
+        $thongketheongay = User::select('name', 'email', 'role')
             ->withCount(['baidangs' => function ($query) use ($filterDate) {
                 $query->whereDate('created_at', now()->toDateString());
                 $filterDate($query);
