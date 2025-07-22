@@ -70,9 +70,9 @@ return [
     'list_by_property_type' => 'List of :type',
     'detail_quick_post' => 'Detail of Quick Post',
     'subtitle_edit_post' => 'Edit Your Real Estate Post',
-    'required_title' => 'Please enter the post title'
-
-
+    'required_title' => 'Please enter the post title',
+    'broker' => 'Broker Code',
+    'select_broker' => 'Select Broker Code',
 
 
 ];

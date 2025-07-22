@@ -59,6 +59,11 @@
 
                             <div class="prt-detail-title-desc">
                                 <div>
+                                    @if (Auth::check() && (Auth::user()->role == 'admin' || Auth::user()->role == 'nhanvien'))
+                                        <span class="label bg-success fw-bold me-2">
+                                            {{ __('post.broker') }}: {{ $baidang->mamoigioi }}
+                                        </span>
+                                    @endif
                                     <span class="label bg-danger fw-bold me-2">
                                         {{ $baidang->mabaidang }}
                                     </span>
@@ -180,7 +185,9 @@
                                 @endphp
 
                                 <h3 class="prt-price-fix text-primary mt-2">
-                                    {{ $formattedPrice }}/ {{ $baidang->unit == 'ngay' ? __('common.day') : __('common.month') }} - {{ $baidang->dientich }} m<sup>2</sup>
+                                    {{ $formattedPrice }}/
+                                    {{ $baidang->unit == 'ngay' ? __('common.day') : __('common.month') }} -
+                                    {{ $baidang->dientich }} m<sup>2</sup>
                                 </h3>
 
                                 <div class="list-fx-features">
@@ -633,7 +640,8 @@
                                                             <h6 class="listing-info-price-4 mb-0">
                                                                 {{ $formattedPrice }}
                                                                 @if ($item->mohinh != 'ban')
-                                                                    / {{ $item->unit == 'ngay' ? __('common.day') : __('common.month') }}
+                                                                    /
+                                                                    {{ $item->unit == 'ngay' ? __('common.day') : __('common.month') }}
                                                                 @endif
                                                             </h6>
                                                         @endif
@@ -727,7 +735,8 @@
                                                             <h6 class="listing-info-price-4 mb-0">
                                                                 {{ $formattedPrice }}
                                                                 @if ($item->mohinh != 'ban')
-                                                                    / {{ $item->unit == 'ngay' ? __('common.day') : __('common.month') }}
+                                                                    /
+                                                                    {{ $item->unit == 'ngay' ? __('common.day') : __('common.month') }}
                                                                 @endif
                                                             </h6>
                                                         @endif
@@ -892,7 +901,8 @@
                                                             <h6 class="listing-info-price-4 mb-0">
                                                                 {{ $formattedPrice }}
                                                                 @if ($item->mohinh != 'ban')
-                                                                    / {{ $item->unit == 'ngay' ? __('common.day') : __('common.month') }}
+                                                                    /
+                                                                    {{ $item->unit == 'ngay' ? __('common.day') : __('common.month') }}
                                                                 @endif
                                                             </h6>
                                                         @endif
@@ -986,7 +996,8 @@
                                                             <h6 class="listing-info-price-4 mb-0">
                                                                 {{ $formattedPrice }}
                                                                 @if ($item->mohinh != 'ban')
-                                                                    / {{ $item->unit == 'ngay' ? __('common.day') : __('common.month') }}
+                                                                    /
+                                                                    {{ $item->unit == 'ngay' ? __('common.day') : __('common.month') }}
                                                                 @endif
                                                             </h6>
                                                         @endif

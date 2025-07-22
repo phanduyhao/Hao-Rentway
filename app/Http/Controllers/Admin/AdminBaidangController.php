@@ -29,6 +29,9 @@ class AdminBaidangController extends Controller
         if ($request->filled('search_mabaidang')) {
             $query->where('mabaidang', 'LIKE', '%' . $request->search_mabaidang . '%');
         }
+        if ($request->filled('search_mamoigioi')) {
+            $query->where('mamoigioi', 'LIKE', '%' . $request->search_mamoigioi . '%');
+        }
     
         if ($request->filled('search_mohinh')) {
             $query->where('mohinh', 'LIKE', '%' . $request->search_mohinh . '%');

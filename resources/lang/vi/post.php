@@ -62,9 +62,11 @@ return [
         'default' => 'Danh sách nhà đất',
     ],
 
-'list_by_property_type' => 'Danh sách :type',
-'detail_quick_post' => 'Chi tiết bài đăng nhanh',
-'subtitle_edit_post' => 'Hãy chỉnh sửa bài đăng nhà đất của bạn',
-'required_title' => 'Mời nhập tiêu đề bài đăng'
+    'list_by_property_type' => 'Danh sách :type',
+    'detail_quick_post' => 'Chi tiết bài đăng nhanh',
+    'subtitle_edit_post' => 'Hãy chỉnh sửa bài đăng nhà đất của bạn',
+    'required_title' => 'Mời nhập tiêu đề bài đăng',
+    'broker' => 'Mã Môi Giới',
+    'select_broker' => 'Chọn Mã Môi Giới',
 
 ];

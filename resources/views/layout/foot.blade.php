@@ -29,61 +29,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <script src="/temp/js/main.js"></script>
-{{-- <script>
-$(document).ready(function() {
-    $('#loginForm').on('submit', function(e) {
-        e.preventDefault();
-        
-        var form = $(this);
-        var url = "{{ route('login') }}";
-        
-        $.ajax({
-            type: "POST",
-            url: '/login',
-            data: form.serialize(),
-            dataType: 'json',
-            
-            success: function(response) {
-                if (response.success) {
-                    // Đăng nhập thành công
-                    $('#loginMessage').html(
-                        '<div class="alert alert-success">' + 
-                        'Đăng nhập thành công! Đang chuyển hướng...' + 
-                        '</div>'
-                    );
-                    
-                    // Chuyển hướng sau 1.5 giây
-                    setTimeout(function() {
-                        window.location.href = '/';
-                    }, 1000);
-                }
-            },
-            error: function(xhr) {
-                if (xhr.status === 422) {
-                    // Lỗi validation
-                    var errors = xhr.responseJSON.errors;
-                    $('#loginMessage').html(
-                        '<div class="alert alert-danger">' + 
-                        (errors.login || 'Đã xảy ra lỗi') + 
-                        '</div>'
-                    );
-                } else {
-                    // Lỗi hệ thống
-                    $('#loginMessage').html(
-                        '<div class="alert alert-danger">Đã xảy ra lỗi hệ thống. Vui lòng thử lại.</div>'
-                    );
-                }
-            }
-        });
-    });
-});
-</script> --}}
+
 <!-- ============================================================== -->
 <!-- This page plugins -->
 <script>
     $('#author').select2();
+    $('#mamoigioi').select2();
     $('#filterModal').on('shown.bs.modal', function() {
-        $('#country, #province, #district, #ward, #quoctich', '#author').select2();
+        $('#country, #province, #district, #ward, #quoctich').select2();
 
         // Ngăn chặn sự kiện chuyển focus vào nút đóng
         $('.select2-container').on('focus', function(e) {
@@ -218,33 +171,7 @@ $(document).ready(function() {
             }
         });
     });
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     var ptypes = document.getElementById('ptypes');
-    //     var soTangLabel = document.getElementById('label-so-tang');
-    //     var soPhongLabel = document.getElementById('label-so-phong');
 
-    //     function updateLabels() {
-    //         var selectedOption = ptypes.options[ptypes.selectedIndex];
-    //         var mohinh = selectedOption.getAttribute('data-type') ||
-    //         ''; // Tránh lỗi nếu data-type không tồn tại
-
-    //         console.log('Loại nhà đất:', mohinh); // Debug xem giá trị có đúng không
-
-    //         if (mohinh.toLowerCase().includes('chung cư')) {
-    //             soTangLabel.textContent = translations.floor;
-    //             soPhongLabel.textContent = translations.number_of_rooms;
-    //         } else {
-    //             soTangLabel.textContent = translations.amountFloor;
-    //             soPhongLabel.textContent = translations.total_rooms;
-    //         }
-    //     }
-
-    //     // Gọi khi trang load xong để cập nhật giá trị ban đầu
-    //     updateLabels();
-
-    //     // Gán sự kiện change để thay đổi khi người dùng chọn giá trị mới
-    //     ptypes.addEventListener('change', updateLabels);
-    // });
     $(document).ready(function() {
         $('.list-gallery-inline').magnificPopup({
             delegate: 'a', // các thẻ <a> bên trong gallery
@@ -742,4 +669,67 @@ $(document).ready(function() {
 
         updatePrices(); // gọi lần đầu
     });
+     document.addEventListener('DOMContentLoaded', function() {
+            const listMa = [{
+                    prefix: 'CFA',
+                    max: 200
+                },
+                {
+                    prefix: 'HFA',
+                    max: 200
+                },
+                {
+                    prefix: 'CSA',
+                    max: 200
+                },
+                {
+                    prefix: 'HSA',
+                    max: 200
+                },
+                {
+                    prefix: 'LSA',
+                    max: 200
+                },
+                {
+                    prefix: 'LFA',
+                    max: 50
+                },
+                {
+                    prefix: 'CFO',
+                    max: 100
+                },
+                {
+                    prefix: 'HFO',
+                    max: 100
+                },
+                {
+                    prefix: 'CSO',
+                    max: 100
+                },
+                {
+                    prefix: 'HSO',
+                    max: 100
+                },
+                {
+                    prefix: 'LSO',
+                    max: 60
+                },
+                {
+                    prefix: 'LFO',
+                    max: 50
+                }
+            ];
+
+            const select = document.getElementById('mamoigioi');
+
+            listMa.forEach(item => {
+                for (let i = 1; i <= item.max; i++) {
+                    const value = item.prefix + i.toString().padStart(3, '0');
+                    const option = document.createElement('option');
+                    option.value = value;
+                    option.textContent = value;
+                    select.appendChild(option);
+                }
+            });
+        });
 </script>

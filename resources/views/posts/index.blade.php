@@ -71,6 +71,13 @@
                                         </div>
 
                                         <div class="form-group col-md-3 col-sm-4 col-12">
+                                            <label>{{ __('post.broker') }}</label>
+                                            <select id="mamoigioi" class="form-control" name="mamoigioi">
+                                                <option value="">{{ __('post.select_broker') }}</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-3 col-sm-4 col-12">
                                             <label>{{ __('common.model') }}</label>
                                             <select id="mohinh" class="form-control" name="mohinh">
                                                 <option value="thue">{{ __('common.model.rent') }}</option>
@@ -136,7 +143,7 @@
                                             <label> {{ __('common.unit') }} </label>
                                             <select id="unit" class="form-control" name="unit">
                                                 <option value="thang">/ {{ __('common.month') }} </option>
-                                                 <option value="ngay">/ {{ __('common.day') }} </option>
+                                                <option value="ngay">/ {{ __('common.day') }} </option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3 col-sm-4 col-12">
@@ -146,8 +153,8 @@
 
                                         <div class="form-group col-md-3 col-sm-4 col-12">
                                             <label> <span id="label-so-tang"></span></label>
-                                            <input type="number" class="form-control" id="input-so-tang" name="tongsotang"
-                                                value="">
+                                            <input type="number" class="form-control" id="input-so-tang"
+                                                name="tongsotang" value="">
                                         </div>
 
                                         <div class="form-group col-md-3 col-sm-4 col-12">
@@ -591,6 +598,7 @@
 
     </section>
     <script>
+       
         document.addEventListener("DOMContentLoaded", function() {
             const priceInput = document.getElementById("priceInput");
             const priceUnit = document.getElementById("priceUnit");

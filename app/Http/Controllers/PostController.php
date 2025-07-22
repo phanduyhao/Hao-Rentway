@@ -242,6 +242,7 @@ class PostController extends Controller
             // Lưu thông tin bài đăng
             $baidang = new Baidang();
             $baidang->mabaidang = $mabaidang;
+            $baidang->mamoigioi = $request->mamoigioi;
             $baidang->title = $request->title;
             $baidang->title_en = $request->title_en;
             $baidang->mohinh = $request->mohinh;
@@ -554,6 +555,7 @@ class PostController extends Controller
 
             // Cập nhật thông tin bài đăng
             $baidang->mabaidang = $request->mabaidang;
+            $baidang->mamoigioi = $request->mamoigioi;
             $baidang->title = $request->title;
             $baidang->title_en = $request->title_en;
             $baidang->mohinh = $request->mohinh;

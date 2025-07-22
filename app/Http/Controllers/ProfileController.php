@@ -68,6 +68,11 @@ class ProfileController extends Controller
                 $q->where('name', 'LIKE', '%' . $request->search_user . '%');
             });
         }
+
+        // Lọc theo tên mã môi giới
+        if ($request->filled('search_broker')) {
+            $query->where('mamoigioi', 'LIKE', '%' . $request->search_broker . '%');
+        }
     
         // Lọc theo tiêu đề bài đăng
         if ($request->filled('search_title')) {

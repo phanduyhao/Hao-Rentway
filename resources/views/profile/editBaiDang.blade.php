@@ -57,6 +57,12 @@
                                                 value="{{ $baidang->title_en }}" required>
                                         </div>
                                         <div class="form-group col-md-3 col-sm-4 col-12">
+                                            <label>{{ __('post.broker') }}</label>
+                                            <select id="mamoigioi" class="form-control" name="mamoigioi">
+                                                <option value="{{ $baidang->mamoigioi }}">{{ $baidang->mamoigioi ?? __('post.select_broker') }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-3 col-sm-4 col-12">
                                             <label>{{ __('common.model') }}</label>
                                             <select id="mohinh" class="form-control" name="mohinh">
                                                 <option value="thue" {{ $baidang->mohinh == 'thue' ? 'selected' : '' }}>

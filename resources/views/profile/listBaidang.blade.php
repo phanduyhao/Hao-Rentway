@@ -122,6 +122,11 @@
                                                 value="{{ request()->search_title }}">
                                         </div>
 
+                                        <div class="col-lg-3 col-sm-6 col-12 mb-3">
+                                            <input class="form-control shadow-none" type="text" name="search_broker"
+                                                placeholder="{{ __('post.broker') }}"
+                                                value="{{ request()->search_broker }}">
+                                        </div>
 
                                         <!-- Tìm kiếm theo tiêu đề công việc -->
                                         <div class="col-lg-3 col-sm-6 col-12 mb-3">
@@ -214,7 +219,7 @@
                                     <thead>
                                         <tr>
                                             <th>{{ __('profile.post_code') }}</th>
-                                            {{-- <th>{{ __('profile.poster') }}</th> --}}
+                                            <th>{{ __('post.broker') }}</th>
                                             <th>{{ __('profile.image') }}</th>
                                             <th>{{ __('profile.title_col') }}</th>
                                             <th>{{ __('common.price') }}</th>
@@ -239,6 +244,7 @@
                                             @foreach ($BaiDangs as $baidang)
                                                 <tr data-id="{{ $baidang->id }}">
                                                     <td>{{ $baidang->mabaidang }}</td>
+                                                    <td>{{ $baidang->mamoigioi }}</td>
                                                     {{-- <td>{{ $baidang->User->name }}</td> --}}
                                                     <td>
                                                         <img src="{{ $baidang->thumb }}" alt="{{ $baidang->title }}"
@@ -248,8 +254,7 @@
                                                         @if (App::getLocale() === 'vi')
                                                             {!! $baidang->title !!}
                                                         @else
-                                                                                                                    {!! $baidang->title_en ?? $baidang->title !!}
-
+                                                            {!! $baidang->title_en ?? $baidang->title !!}
                                                         @endif
                                                     </td>
                                                     <td>{{ number_format($baidang->price, 0, ',', '.') }} đ</td>

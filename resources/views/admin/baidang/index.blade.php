@@ -27,6 +27,10 @@
                             <input class="form-control shadow-none" type="text" name="search_mabaidang"
                                 placeholder="Tìm theo mã bài đăng" value="{{ request()->search_mabaidang }}">
                         </div>
+                           <div class="col-lg-3 col-sm-6 col-12 mb-3">
+                            <input class="form-control shadow-none" type="text" name="search_mamoigioi"
+                                placeholder="Tìm theo mã môi giới" value="{{ request()->search_mamoigioi }}">
+                        </div>
                         <!-- Tìm kiếm theo tên công ty -->
                         <div class="col-lg-3 col-sm-6 col-12 mb-3">
                             <input class="form-control shadow-none" type="text" name="search_title"
@@ -81,6 +85,7 @@
                     <thead>
                         <tr>
                             <th>Mã bài đăng</th>
+                            <th>Mã môi giới</th>
                             <th>Người đăng</th>
                             <th>Loại liên hệ</th>
                             <th>Hình ảnh</th>
@@ -106,6 +111,7 @@
                             @foreach ($BaiDangs as $baidang)
                                 <tr data-id="{{ $baidang->id }}">
                                     <td>{{ $baidang->mabaidang }}</td>
+                                    <td>{{ $baidang->mamoigioi }}</td>
                                     <td>{{ $baidang->User->name }}</td>
                                     @php
                                         $roleMappings = [
