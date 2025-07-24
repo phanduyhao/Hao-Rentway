@@ -186,8 +186,7 @@
 
                                 <h3 class="prt-price-fix text-primary mt-2">
                                     {{ $formattedPrice }}/
-                                    {{ $baidang->unit == 'ngay' ? __('common.day') : __('common.month') }} -
-                                    {{ $baidang->dientich }} m<sup>2</sup>
+                                    {{ $baidang->unit == 'ngay' ? __('common.day') : __('common.month') }}
                                 </h3>
 
                                 <div class="list-fx-features">
