@@ -8,7 +8,7 @@
                         <a class="nav-brand text-logo" href="/">
                             {{-- <img src="{{$settings['logo']}}" width="100px" alt=""> --}}
                             <h2 class="text-white mb-3">
-                                <b>RENTWAY</b>
+                                <b>HAILAND</b>
                             </h2>
                         </a>
                         <div class="footer-add">

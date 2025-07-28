@@ -352,7 +352,7 @@
     <div class="container d-lg-none d-block border-2 p-2 border-top">
 
     <ul class="d-flex justify-content-center nav-menu mobile flex-wrap">
-        <li class="has-submenu rounded-5 border mt-2  h-fit {{ request('mohinh') ? 'active' : '' }}">
+        <li class="has-submenu rounded-5 border mt-2  h-fit text-uppercase {{ request('mohinh') ? 'active' : '' }}">
             <a href="JavaScript:void(0);"
                 class="toggle-submenu p-2 text-nowrap">{{ __('common.model') }} </a>
             <ul class="nav-dropdown nav-submenu bg-white border">
@@ -372,7 +372,7 @@
             </ul>
         </li>
 
-        <li class="has-submenu rounded-5 border mt-2  h-fit mx-2 {{ request('country') ? 'active' : '' }}">
+        <li class="has-submenu rounded-5 border mt-2  h-fit text-uppercase mx-2 {{ request('country') ? 'active' : '' }}">
             <a href="JavaScript:void(0);"
                 class="toggle-submenu p-2 text-nowrap">{{ __('common.country') }} </a>
             <ul class="nav-dropdown nav-submenu bg-white border">
@@ -393,7 +393,7 @@
             </ul>
         </li>
 
-        <li class="has-submenu rounded-5 border mt-2  h-fit me-2 {{ request()->routeIs('listByNhadat') ? 'active' : '' }}">
+        <li class="has-submenu rounded-5 border mt-2  h-fit text-uppercase me-2 {{ request()->routeIs('listByNhadat') ? 'active' : '' }}">
             <a href="JavaScript:void(0);"
                 class="toggle-submenu p-2 text-nowrap">{{ __('common.property_type') }}</a>
             @php
@@ -422,11 +422,11 @@
             </ul>
 
         </li>
-        <li class="has-submenu rounded-5 border mt-2  h-fit me-2 {{ request('mohinh') ? 'active' : '' }}">
+        <li class="has-submenu rounded-5 border mt-2  h-fit text-uppercase me-2 {{ request('mohinh') ? 'active' : '' }}">
             <a href="JavaScript:void(0);"
                 class="toggle-submenu p-2 text-nowrap">{{ __('common.project') }} </a>
         </li>
-        <li class="has-submenu rounded-5 border mt-2  h-fit {{ request('mohinh') ? 'active' : '' }}">
+        <li class="has-submenu rounded-5 border mt-2  h-fit text-uppercase {{ request('mohinh') ? 'active' : '' }}">
             <a href="JavaScript:void(0);"
                 class="toggle-submenu p-2 text-nowrap">{{ __('common.service') }} </a>
         </li>
